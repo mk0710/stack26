@@ -10,19 +10,19 @@ class StackedExample(QWidget):
     def __init__(self):
         super(StackedExample, self).__init__()
         # 设置窗口初始位置和大小
-        self.setGeometry(500, 400, 400, 200)
+        self.setGeometry(500, 400, 800, 400)
         self.setWindowTitle('StackedWidget 例子')
         # 创建列表窗口，添加条目
         self.leftlist()
         # 创建三个小控件
         self.stack1 = QWidget()
-        self.stack1.setStyleSheet("QWidget{border-left:1px solid #D6D8DD}")
+        self.stack1.setStyleSheet("QWidget{border-left:1px solid #D6D8DD;border-bottom:1px solid #D6D8DD}")
         self.stack2 = QWidget()
-        self.stack2.setStyleSheet("QWidget{border-left:1px solid #D6D8DD}")
+        self.stack2.setStyleSheet("QWidget{border-left:1px solid #D6D8DD;border-bottom:1px solid #D6D8DD}")
         self.stack3 = QWidget()
-        self.stack3.setStyleSheet("QWidget{border-left:1px solid #D6D8DD}")
+        self.stack3.setStyleSheet("QWidget{border-left:1px solid #D6D8DD;border-bottom:1px solid #D6D8DD}")
         self.show_money = QWidget()
-        self.show_money.setStyleSheet("QWidget{border-left:1px solid #D6D8DD}")
+        self.show_money.setStyleSheet("QWidget{border-left:1px solid #D6D8DD;}")
         # self.line = QFrame.HLine()
 
         # 创建三个小控件对应的UI
@@ -43,7 +43,7 @@ class StackedExample(QWidget):
         vbox = QVBoxLayout()
         vbox.addWidget(self.stack)
         vbox.addWidget(self.show_money)
-        # vbox.addWidget(self.line)
+
         # vbox.setStretchFactor(self.stack, 1)
         # vbox.setStretchFactor(self.show_money, 1)
         mainbox.addWidget(self.leftlist)
@@ -72,7 +72,7 @@ class StackedExample(QWidget):
             self.item.setTextAlignment(Qt.AlignCenter)  # 居中显示
 
     def init(self):
-        self.male_btn.clicked.connect(self.set0)
+        self.blytwdb.clicked.connect(self.set0)
 
     def show_money_UI(self):
         style1 = "QLabel{color:black;font-size:13px;font-family:Microsoft YaHei}"
@@ -136,10 +136,9 @@ class StackedExample(QWidget):
         money_layout.addWidget(self.other_text, 3, 2, 1, 1)
         money_layout.addWidget(total_money, 3, 5, 1, 1)
         money_layout.addWidget(self.total_money, 3, 6, 1, 1)
-        money_layout.setContentsMargins(20, 50, 20, 50)
+        money_layout.setContentsMargins(10, 20, 20, 30)
 
         self.show_money.setLayout(money_layout)
-    # def line(self):
 
     def stack1UI(self):
         layout1 = QGridLayout()
@@ -171,36 +170,46 @@ class StackedExample(QWidget):
         self.company_tel.setContentsMargins(0,0,20,0)
         layout1.addWidget(label3, 3, 1, 1, 1)
         layout1.addWidget(self.company_tel, 3, 2, 1, 1)
-        layout1.setSpacing(35)
+        # layout1.setSpacing(5)
         # layout1.getItemPosition(1000)
         # layout1.setHorizontalSpacing(200)
-        layout1.setContentsMargins(28, 19, 30, 40)
-        # layout1.setContentsMargins(28, 19, 30, 180)
+        layout1.setContentsMargins(28, 19, 30, 0)
+        # layout1.setContentsMargins(28, 19, 30, 50)
         self.stack1.setLayout(layout1)
 
     def stack2UI(self):
         # 主表单布局，次水平布局
-        self.male_btn = QPushButton("男")
-        layout = QFormLayout()
-        sex = QHBoxLayout()
-        # 水平布局添加单选按钮
-        sex.addWidget(self.male_btn)
-        # self.male_btn.setStyleSheet(''' text-align : center;
-        #                            background-color : DarkSeaGreen;
-        #                            height : 5px;
-        #
-        #                            border-width: 1px;
-        #                            border-color: rgb(255, 0, 0);
-        #                            font : 5pt;
-        #                            font-family:Microsoft YaHei
-        #                             ''')
+        layout = QGridLayout()
+        style1 = "QLabel{color:black;font-size:13px;font-family:Microsoft YaHei}"
+        style2 = "QLineEdit{color:black;font-size:13px;font-family:Microsoft YaHei}"
+        self.blytwdb = QPushButton()
+        self.blytwdb.setFixedSize(90, 90)
+        self.blytwdb.setText("气象用玻璃\n液体温度表")
 
-        sex.addWidget(QRadioButton('女'))
+        self.sjswdj = QPushButton()
+        self.sjswdj.setText("气象用双金\n属温度计")
+        self.sjswdj.setFixedSize(90, 90)
 
-        # 表单布局添加控件
-        layout.addRow(QLabel('性别'), sex)
-        self.bir = QLineEdit()
-        layout.addRow('生日', self.bir)
+        self.wdcgq = QPushButton()
+        self.wdcgq.setText("自动站温度\n传感器")
+        self.wdcgq.setFixedSize(90, 90)
+
+        self.bdz = QPushButton("铂电阻")
+        self.bdz.setFixedSize(90, 90)
+        self.pr630 = QLabel("630元/支")
+        self.pr630_1 = QLabel("630元/支")
+        self.pr1000 = QLabel("1000元/支")
+        self.pr1120 = QLabel("1120元/支")
+
+        layout.addWidget(self.blytwdb, 1, 1, 1, 1)
+        layout.addWidget(self.sjswdj, 1, 2, 1, 1)
+        layout.addWidget(self.wdcgq, 1, 3, 1, 1)
+        layout.addWidget(self.bdz, 1, 4, 1, 1)
+        layout.addWidget(self.pr630, 2, 1, 1, 1)
+        layout.addWidget(self.pr630_1, 2, 2, 1, 1)
+        layout.addWidget(self.pr1000, 2, 3, 1, 1)
+        layout.addWidget(self.pr1120, 2, 4, 1, 1)
+        layout.setContentsMargins(28, 19, 30, 0)
         self.stack2.setLayout(layout)
 
     def set0(self):
